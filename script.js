@@ -43,7 +43,12 @@ const setResult = (data) => {
 }
 
 const setRestart = () => {
-    setResult()
+    fetch('./db.json')
+    .then((res) => res.json())
+    .then(data => {
+        setResult(data)
+    })
+    console.log('다시시작해')
     myResult = '' ;
     tryNum = 0;
     get('.try span').innerText = `${tryNum}`
