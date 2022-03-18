@@ -39,7 +39,16 @@ const setResult = (data) => {
             i--
         }
     }
+    const overlap = new Set(result)
+    const overlapArr = [...overlap]
     console.log(result)
+    console.log(overlapArr.length, result.length)
+    overlapArr.length < result.length ? get('.overlap').classList.remove('hidden') : get('.overlap').classList.add('hidden')
+    /*
+    if([...overlap].length < result.length) {
+        get('.overlap').classList.remove('hidden')
+    }
+    */
 }
 
 const setRestart = () => {
@@ -53,8 +62,8 @@ const setRestart = () => {
     tryNum = 0;
     get('.try span').innerText = `${tryNum}`
     get('.try_input').innerHTML = '';
-    get('.try_btn').classList.remove('hidden_btn')
-    get('.restart_btn').classList.add('hidden_btn')
+    get('.try_btn').classList.remove('hidden')
+    get('.restart_btn').classList.add('hidden')
 }
 
 
@@ -98,8 +107,8 @@ get('.try_btn').addEventListener('click', () => {
         //만약 정답이면 추가작업없이 끝
         if(myResult === result) {
             alert(`${tryNum}차시도, 정답입니다!`)
-            get('.restart_btn').classList.remove('hidden_btn')
-            get('.try_btn').classList.add('hidden_btn')
+            get('.restart_btn').classList.remove('hidden')
+            get('.try_btn').classList.add('hidden')
         } else if (tryNum === limit) {
             alert(`
             ${tryNum}회 틀리셨습니다T.T
