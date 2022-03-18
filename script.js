@@ -1,37 +1,45 @@
 const get = (ele) => document.querySelector(ele);
 const getAll = (ele) => document.querySelectorAll(ele);
 
-let result = '';
-let myResult = '';
+let result = '' ;
+let myResult = '' ;
 let tryNum = 0;
 const limit = 7;
+
 getAll('.info span').innerText = `${limit}`
 
 const template = `<div class="input_line">
-                <input class="words" type="text" onchange="inputVal(this)">
-                <input class="words" type="text" onchange="inputVal(this)">
-                <input class="words" type="text" onchange="inputVal(this)">
-                <input class="words" type="text" onchange="inputVal(this)">
-                <input class="words" type="text" onchange="inputVal(this)">
+                <input class="words" type="text" maxlength="1" onchange="inputVal(this)">
+                <input class="words" type="text" maxlength="1" onchange="inputVal(this)">
+                <input class="words" type="text" maxlength="1" onchange="inputVal(this)">
+                <input class="words" type="text" maxlength="1" onchange="inputVal(this)">
+                <input class="words" type="text" maxlength="1" onchange="inputVal(this)">
             </div>`
             
 
 const inputVal = (target) => {
+    const english = /[a-zA-Z]/;
+    if(!english.test(`${target.value}`)) target.value = '';
     let value = target.value.toUpperCase();
     target.value = value;
 }
 
-const setResult = () => {
-    const arr = ['const', 'black', 'white'];
-    
+fetch('./db.json')
+.then((res) => res.json())
+.then(data => {
+    setResult(data)
+})
+
+const setResult = (data) => {
     for (let i = 0; i < 1; i++) {
-        let ranNum = parseInt(Math.random()*10, 10)
-        if(ranNum <= arr.length) {
-            return result = arr[ranNum].toUpperCase();
+        let ranNum = parseInt(Math.random()*100, 10)
+        if(ranNum <= data.length) {
+            result = data[ranNum].toUpperCase();
         } else {
             i--
         }
     }
+    console.log(result)
 }
 
 const setRestart = () => {
@@ -42,11 +50,11 @@ const setRestart = () => {
     get('.try_input').innerHTML = '';
     get('.try_btn').classList.remove('hidden_btn')
     get('.restart_btn').classList.add('hidden_btn')
-    // console.log(result)
 }
 
 
 get('.try_btn').addEventListener('click', () => {
+    let empty = 0;
     if(tryNum === 0) {
         tryNum++;
         get('.try span').innerText = `${tryNum}`
@@ -54,9 +62,9 @@ get('.try_btn').addEventListener('click', () => {
     } else {
         const words = getAll('.words');
 
-        let empty = 0;
         words.forEach((x) => !(x.value) ? empty = 1 : empty = empty)
         if(empty === 1) {
+            console.log(empty)
             alert('빈칸을 채워주세요!')
             return
         }
@@ -75,6 +83,7 @@ get('.try_btn').addEventListener('click', () => {
                 words[i].style.color = '#000'
             }
 
+            //다음줄 생성과 동시에 해줄 것
             words[i].disabled = true;
             words[i].removeAttribute('onchange');
             words[i].classList.remove('words');
