@@ -5,6 +5,7 @@ let result = '';
 let myResult = '';
 let tryNum = 0;
 const limit = 7;
+getAll('.info span').innerText = `${limit}`
 
 const template = `<div class="input_line">
                 <input class="words" type="text" onchange="inputVal(this)">
@@ -52,7 +53,17 @@ get('.try_btn').addEventListener('click', () => {
         get('.try_input').innerHTML = template
     } else {
         const words = getAll('.words');
+
+        let empty = 0;
+        words.forEach((x) => !(x.value) ? empty = 1 : empty = empty)
+        if(empty === 1) {
+            alert('빈칸을 채워주세요!')
+            return
+        }
+
+
         for(let i = 0; i < result.length; i++) {
+
             if (words[i].value === result[i]) {
                 words[i].style.backgroundColor = 'green'
                 words[i].style.color = '#fff'

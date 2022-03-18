@@ -1,3 +1,12 @@
+* {
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+li {
+  list-style: none;
+}
+
 section {
   width: 100vw;
   height: 100vh;
@@ -6,10 +15,58 @@ section {
 
 h2 {
   margin-top: 40px;
+  font-size: 2rem;
+}
+
+.info {
+  font-size: 1.3rem;
+  margin-top: 10px;
+  line-height: 2rem;
+}
+
+.try_color {
+  margin: 50px 0;
+  padding: 30px 0;
+  border: 2px dashed #eee;
+}
+
+.try_color ul {
+  max-width: 370px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.try_color li {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  font-size: 0.8rem;
+}
+
+.try_color span {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #eee;
+  margin-bottom: 10px;
+}
+
+.try_color li:nth-child(1) > span {
+  background-color: green;
+}
+.try_color li:nth-child(2) > span {
+  background-color: orange;
+}
+.try_color li:nth-child(3) > span {
+  background-color: #eee;
 }
 
 .try {
   font-size: 2em;
+}
+
+.try_input {
+  margin-top: 30px;
 }
 
 .input_line {
