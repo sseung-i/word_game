@@ -1,8 +1,8 @@
 const get = (ele) => document.querySelector(ele);
 const getAll = (ele) => document.querySelectorAll(ele);
 
-let result  =  '' ;
-let myResult = '' ;
+let result = '';
+let myResult = '';
 let tryNum = 0;
 const limit = 7;
 

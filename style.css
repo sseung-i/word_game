@@ -4,6 +4,10 @@ section {
   text-align: center;
 }
 
+h2 {
+  margin-top: 40px;
+}
+
 .try {
   font-size: 2em;
 }
