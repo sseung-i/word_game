@@ -6,4 +6,4 @@
 
 ---
 
-https://sseung-i.netlify.app/
+https://sseung-wordgame.netlify.app/
